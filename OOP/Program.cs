@@ -19,7 +19,7 @@ namespace OOP
             // Person (name and age)
             // henn ("Henn Sarv", 63)
 
-            Person ants = new Person() { _Name = "Ants", _Age = 55 }; // initializer
+            Person ants = new Person() { _Name = "Ants"}; // initializer
 
             // a default constructor only exists if no other constructor has been created;
 
@@ -40,12 +40,12 @@ namespace OOP
 
             Test test = new Test();
             test.Description = "Jsut a test";
-            henn.Print();
-            Person.StaticPrint(henn);
 
-            Console.WriteLine(test);
-            Console.WriteLine(john);
 
+            // 
+
+            ants.Age = 40;
+            Console.WriteLine(ants);
         }
     }
     // A class is something that more or less reflects a real-word object.
@@ -61,17 +61,38 @@ namespace OOP
 
         // public members are capitalized
         
-        public int _Age; // public field
-        string name; // private field
+        private int _Age; // public field
         // local members are not capitalized, see above, object henn;
         public string _Name // this is a property. A Property is made of a getter and a setter; Always public?
-                                
+
+        { get; set; }
+
+        public int Age  // a property is something that has a get and a set.
+                        // a property has a datatype
+                        // Set exists to modify something according to some rules, some "business logic"
         {
-            get { return name; }
-            set { name = value; }
+            get => _Age;
+            set => _Age = value > _Age ? value : _Age;
         }
+
         // The members can be of more complicated types as well;
         //public Person Spouse;
+
+        // a bit about public and private;
+        // private variables can only be used inside a class
+        // public variables can be just outside a class as well
+        // there are also internal variables; internal is used within an assemly
+        // when we talk about inheritance, we will talk about "protected"
+        // the more restricted a variable, the cheaper it is. 
+        // when a method is returned, the variables defined for it disappear
+        // garbage collection removes the values that no longer have variables that refer to them;
+
+        // an aside about memory:
+        // When run, a program is set aside some memory
+        // it is divided into 2, a stack and a heap. Both are "kuhi"
+        // Stack is LAST IN FIRST OUT, heap allows ...
+        // wWhen a method is called, a piece of memory is added to the stack to contain the variables
+
 
         public Person() : this("unknown", 0) { }
          
@@ -100,6 +121,14 @@ namespace OOP
 
         // a static method is attached to the class!
         // a ... method is attached to the object. Instantiated method. 
+        // static fields exists and are shared between objects
+        // instance fields are created when New is called. 
+
+
+            //methods always exist
+            // instance methods are given its context, the this, when called;
+            // static methods only have access to static fields and other static methods;
+            //
         public static void StaticPrint(Person who)
         {
             Console.WriteLine(who);
@@ -139,4 +168,15 @@ namespace OOP
     // Methods are a name block that can be called from other blocks. They are also called procedures, subroutines etc
 
     // We have been using the method, Main
+
+
+
+    // RECAP!!
+    // a class is has a name and access-type, default internal, maybe public. 
+    // a class has fields, methods, functions, properties
+    // these are either instance (object) or static (shared);
+
+
+
+    
 }
